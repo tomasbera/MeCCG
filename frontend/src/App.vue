@@ -1,85 +1,94 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div class="main-page">
+    <div class="background-image"></div>
+    <h1>{{ gameTitle }}</h1>
+    <p>{{ gameDescription }}</p>
+    <div class="buttons">
+      <router-link to="/play" class="play-button">
+        Play Now
+      </router-link>
+      <router-link to="/about" class="about-button">
+        About the Game
+      </router-link>
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<script>
+export default {
+  name: "MainPage",
+  data() {
+    return {
+      gameTitle: "Middle-earth Collectible Card Game",
+      gameDescription:
+          "Join the adventure in J.R.R. Tolkien's Middle-earth with MeCCG, the collectible card game that lets you explore the rich lore and characters of this beloved universe. Build your deck, master the game mechanics, and challenge other players in this immersive and strategic game.",
+    };
+  },
+};
+</script>
+
+<style>
+.main-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  font-family: "Cinzel Decorative", serif;
+  color: #f7f7f7;
+  text-shadow: 2px 2px 2px #000000;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("./assets/rivendell.png");
+  background-size: cover;
+  opacity: 0.5;
+  z-index: -1;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
+.main-page h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
   text-align: center;
-  margin-top: 2rem;
+  text-transform: uppercase;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.main-page p {
+  font-size: 1.5rem;
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1.5;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.play-button,
+.about-button {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  background-color: #c9aa5f;
+  color: #443d38;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px #f7f7f7;
+  transition: background-color 0.2s ease-in-out;
 }
 
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.play-button:hover,
+.about-button:hover {
+  background-color: #e5c77e;
 }
 </style>
